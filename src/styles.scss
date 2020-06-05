@@ -54,6 +54,21 @@ button.icon {
     }
 }
 
+button.outline {
+    background-color: white;
+    color: #008489;
+}
+
+// Layout
+
+.m-r-small {
+    margin-right: 0.5rem;
+}
+
+.m-l-small {
+    margin-left: 0.5rem;
+}
+
 // Barra navegación
 
 nav {
@@ -126,6 +141,28 @@ form {
         label {
             font-size: 1.2rem;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-left: 0.5rem;
+                font-size: 1rem;
+                text-transform: none;
+                display: flex;
+                align-items: center;
+
+                &.valid {
+                    color: #008489;
+                }
+
+                &.invalid {
+                    color: #890e00;
+                }
+
+                img {
+                    margin-right: 0.3rem;
+                }
+            }
         }
 
         input {
@@ -136,6 +173,13 @@ form {
 
         }
 
+    }
+
+    div:last-child {
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 1rem 0;
     }
 
 }

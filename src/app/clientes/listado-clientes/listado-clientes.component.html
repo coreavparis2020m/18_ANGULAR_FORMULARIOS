@@ -6,4 +6,18 @@
             Añadir
         </button>
     </div>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>C.I.F.</th>
+            <th>Domicilio</th>
+            <th>Correo electrónico</th>
+        </tr>
+        <tr *ngFor="let cliente of clientes">
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.cif}}</td>
+            <td>{{cliente.domicilio}}</td>
+            <td>{{cliente.email}}</td>
+        </tr>
+    </table>
 </div>

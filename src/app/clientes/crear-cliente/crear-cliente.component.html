@@ -5,26 +5,39 @@
             Atrás
         </button>
     </div>
-    <form>
+    <form [formGroup]="formCliente" (ngSubmit)="sendCliente()">
         <div>
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre">
+            <label for="nombre">
+                Nombre
+                <span class="valid" *ngIf="formCliente.controls.nombre.valid">
+                    <img src="assets/icons/check-circle.svg" alt="">
+                </span>
+                <span class="invalid" *ngIf="formCliente.controls.nombre.invalid">
+                    <img src="assets/icons/x-circle.svg" alt="">
+                    El nombre es obligatorio
+                </span>
+            </label>
+            <input type="text" id="nombre" formControlName="nombre">
         </div>
         <div>
             <label for="cif">C.I.F.</label>
-            <input type="text" id="cif">
+            <input type="text" id="cif" formControlName="cif">
         </div>
         <div>
             <label for="domicilio">Domicilio social</label>
-            <input type="text" id="domicilio">
+            <input type="text" id="domicilio" formControlName="domicilio">
         </div>
         <div>
             <label for="email">Correo electrónico</label>
-            <input type="email" id="email">
+            <input type="email" id="email" formControlName="email">
         </div>
         <div>
             <label for="pago">Forma de pago</label>
-            <input type="text" id="pago">
+            <input type="text" id="pago" formControlName="pago">
+        </div>
+        <div>
+            <button type="button" class="outline" routerLink="/listado-clientes">Cancelar</button>
+            <button type="submit" class="m-l-small" [disabled]="formCliente.invalid">Añadir cliente</button>
         </div>
     </form>
 </div>
