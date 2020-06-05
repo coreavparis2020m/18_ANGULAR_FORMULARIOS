@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from 'src/app/servicios/clientes.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ export class CrearClienteComponent implements OnInit {
 
   
     formCliente: FormGroup;
+    @ViewChild('nombre', {static: true}) nombreRef: ElementRef;
 
     constructor(private clientesService: ClientesService,
                 private router: Router) { }
@@ -20,10 +21,11 @@ export class CrearClienteComponent implements OnInit {
         this.formCliente = new FormGroup({
             nombre: new FormControl('',[Validators.required]),
             cif: new FormControl(''),
-            domicilio: new FormControl(''),
+            domicilio: new FormControl('', [Validators.required, Validators.minLength(5)]),
             email: new FormControl(''),
             pago: new FormControl(''),
         });
+        this.nombreRef.nativeElement.focus();
     }
 
     sendCliente() {
