@@ -1,1 +1,143 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: #718096;
+    background-color: #fafafa;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #008489;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+button {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    border: 1px solid #008489;
+    background-color: #008489;
+    color: white;
+    cursor: pointer;
+    transition: 400ms all ease-in-out;
+
+    &:hover {
+        border: 1px solid #004e51;
+        background-color: #004e51;
+    }
+}
+
+button.jumbo {
+    font-size: 2.5rem;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button.icon {
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: 0.5rem;
+    }
+}
+
+// Barra navegación
+
+nav {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    p {
+        margin-left: 1rem;
+        cursor: pointer;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 920px;
+
+    &.fade {
+        opacity: 0;
+        transition: 500ms opacity ease-in-out;
+    }
+
+    &.fade.show {
+        opacity: 1;
+    }
+
+    .container-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+// Tabla
+
+table {
+    width: 100%;
+
+    th {
+        padding: 0.5rem 1rem;
+        background-color: #e8e8e8;
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    td {
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        border-bottom: 0.5px solid #e8e8e8;
+
+        &:nth-child(3) {
+            text-align: center;
+        }
+    }
+}
+
+// Formularios
+
+form {
+
+    margin: 1rem 0;
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        input {
+            font-size: 1.5rem;
+            border: 1px solid #718096;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+
+        }
+
+    }
+
+}
+
+
