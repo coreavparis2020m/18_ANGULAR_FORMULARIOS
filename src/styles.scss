@@ -98,6 +98,11 @@ nav {
         opacity: 1;
     }
 
+    &.flex {
+        display: flex;
+        justify-content: space-around;
+    }
+
     .container-head {
         display: flex;
         justify-content: space-between;
@@ -165,7 +170,8 @@ form {
             }
         }
 
-        input {
+        input,
+        select {
             font-size: 1.5rem;
             border: 1px solid #718096;
             padding: 0.5rem;

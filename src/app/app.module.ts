@@ -8,6 +8,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { BarraNavegacionComponent } from './barra-navegacion/barra-navegacion.component';
 import { ListadoClientesComponent } from './clientes/listado-clientes/listado-clientes.component';
 import { CrearClienteComponent } from './clientes/crear-cliente/crear-cliente.component';
+import { ListadoFacturasComponent } from './facturas/listado-facturas/listado-facturas.component';
+import { CrearFacturaComponent } from './facturas/crear-factura/crear-factura.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { CrearClienteComponent } from './clientes/crear-cliente/crear-cliente.co
     InicioComponent,
     BarraNavegacionComponent,
     ListadoClientesComponent,
-    CrearClienteComponent
+    CrearClienteComponent,
+    ListadoFacturasComponent,
+    CrearFacturaComponent
   ],
   imports: [
     BrowserModule,

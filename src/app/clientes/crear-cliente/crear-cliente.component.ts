@@ -16,6 +16,8 @@ export class CrearClienteComponent implements OnInit {
     @ViewChild('nombre', {static: true}) nombreRef: ElementRef;
     showValidacion = false;
 
+    userId = '05687575';
+
     constructor(private clientesService: ClientesService,
                 private router: Router) { }
 
@@ -31,7 +33,16 @@ export class CrearClienteComponent implements OnInit {
     }
 
     sendCliente() {
-        this.clientesService.postCliente(this.formCliente.value);
+        let cliente = {
+            nombre: this.formCliente.get('nombre').value,
+            cif: this.formCliente.get('cif').value,
+            domicilio: this.formCliente.get('domicilio').value,
+            email: this.formCliente.get('email').value,
+            pago: this.formCliente.get('pago').value,
+            userId: this.userId,
+            creadoEl: new Date()
+        }
+        this.clientesService.postCliente(cliente);
         this.router.navigate(['/listado-clientes']);
     }
 
