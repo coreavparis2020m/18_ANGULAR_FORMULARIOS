@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from 'src/app/servicios/clientes.service';
 import { Router } from '@angular/router';
+import { ValidateCif } from 'src/app/validadores/cif.validator';
 
 @Component({
   selector: 'app-crear-cliente',
@@ -13,6 +14,7 @@ export class CrearClienteComponent implements OnInit {
   
     formCliente: FormGroup;
     @ViewChild('nombre', {static: true}) nombreRef: ElementRef;
+    showValidacion = false;
 
     constructor(private clientesService: ClientesService,
                 private router: Router) { }
@@ -20,7 +22,7 @@ export class CrearClienteComponent implements OnInit {
     ngOnInit() {
         this.formCliente = new FormGroup({
             nombre: new FormControl('',[Validators.required]),
-            cif: new FormControl(''),
+            cif: new FormControl('', ValidateCif),
             domicilio: new FormControl('', [Validators.required, Validators.minLength(5)]),
             email: new FormControl(''),
             pago: new FormControl(''),
@@ -31,6 +33,10 @@ export class CrearClienteComponent implements OnInit {
     sendCliente() {
         this.clientesService.postCliente(this.formCliente.value);
         this.router.navigate(['/listado-clientes']);
+    }
+
+    changeShowValidacion() {
+        this.showValidacion = true;
     }
 
 }

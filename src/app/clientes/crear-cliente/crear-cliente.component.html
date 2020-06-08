@@ -9,10 +9,10 @@
         <div>
             <label for="nombre">
                 Nombre
-                <span class="valid" *ngIf="formCliente.controls.nombre.valid">
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.nombre.valid">
                     <img src="assets/icons/check-circle.svg" alt="">
                 </span>
-                <span class="invalid" *ngIf="formCliente.controls.nombre.touched && formCliente.controls.nombre.invalid">
+                <span class="invalid" *ngIf="showValidacion && formCliente.controls.nombre.invalid">
                     <img src="assets/icons/x-circle.svg" alt="">
                     El nombre es obligatorio
                 </span>
@@ -20,16 +20,25 @@
             <input type="text" id="nombre" formControlName="nombre" #nombre>
         </div>
         <div>
-            <label for="cif">C.I.F.</label>
+            <label for="cif">
+                C.I.F.
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.cif.valid">
+                    <img src="assets/icons/check-circle.svg" alt="">
+                </span>
+                <span class="invalid" *ngIf="showValidacion && formCliente.get('cif').errors && formCliente.get('cif').errors.validCif">
+                    <img src="assets/icons/x-circle.svg" alt="">
+                    {{formCliente.get('cif').errors.mensaje}}
+                </span>
+            </label>
             <input type="text" id="cif" formControlName="cif">
         </div>
         <div>
             <label for="domicilio">
                 Domicilio social
-                <span class="valid" *ngIf="formCliente.controls.domicilio.valid">
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.domicilio.valid">
                     <img src="assets/icons/check-circle.svg" alt="">
                 </span>
-                <span class="invalid" *ngIf="formCliente.controls.domicilio.dirty && formCliente.controls.domicilio.invalid">
+                <span class="invalid" *ngIf="showValidacion && formCliente.controls.domicilio.invalid">
                     <img src="assets/icons/x-circle.svg" alt="">
                     El domicilio debe tener más de 5 caracteres
                 </span>
@@ -46,7 +55,8 @@
         </div>
         <div>
             <button type="button" class="outline" routerLink="/listado-clientes">Cancelar</button>
-            <button type="submit" class="m-l-small" [disabled]="formCliente.invalid">Añadir cliente</button>
+            <button type="button" class="m-l-small" *ngIf="formCliente.invalid" (click)="changeShowValidacion()">Añadir cliente</button>
+            <button type="submit" class="m-l-small" *ngIf="formCliente.valid">Añadir cliente</button>
         </div>
     </form>
 </div>
