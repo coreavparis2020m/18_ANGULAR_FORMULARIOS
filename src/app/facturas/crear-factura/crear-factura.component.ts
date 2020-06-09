@@ -32,9 +32,9 @@ export class CrearFacturaComponent implements OnInit {
         this.formFra.valueChanges
                         .subscribe(data => {
                             let importeIVA =  this.numerosService.formatNumero(data.base * data.tipo, 2, ' €');
-                            // let total = data.base + data.base * data.tipo;
+                            let total = this.numerosService.formatNumero(data.base + data.base * data.tipo, 2, ' €');
                             this.formFra.get('importeIVA').patchValue(importeIVA, {emitEvent: false});
-                            // this.formFra.get('total').patchValue(total, {emitEvent: false});
+                            this.formFra.get('total').patchValue(total, {emitEvent: false});
                         });
     }
 
