@@ -33,17 +33,27 @@
             <input type="text" id="cif" formControlName="cif">
         </div>
         <div>
-            <label for="domicilio">
-                Domicilio social
-                <span class="valid" *ngIf="showValidacion && formCliente.controls.domicilio.valid">
+            <label for="calle">
+                Calle
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.calle.valid">
                     <img src="assets/icons/check-circle.svg" alt="">
                 </span>
-                <span class="invalid" *ngIf="showValidacion && formCliente.controls.domicilio.invalid">
+                <span class="invalid" *ngIf="showValidacion && formCliente.controls.calle.invalid">
                     <img src="assets/icons/x-circle.svg" alt="">
-                    El domicilio debe tener más de 5 caracteres
+                    La calle debe tener más de 5 caracteres
                 </span>
             </label>
-            <input type="text" id="domicilio" formControlName="domicilio">
+            <input type="text" id="calle" formControlName="calle">
+        </div>
+        <div>
+            <label for="localidad">Localidad</label>
+            <input type="localidad" id="localidad" formControlName="localidad">
+        </div>
+        <div>
+            <label for="provincia">Provincia</label>
+            <select id="provincia" formControlName="provincia">
+                <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+            </select>
         </div>
         <div>
             <label for="email">Correo electrónico</label>

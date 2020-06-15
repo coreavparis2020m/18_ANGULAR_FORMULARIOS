@@ -10,14 +10,20 @@
         <tr>
             <th>Nombre</th>
             <th>C.I.F.</th>
-            <th>Domicilio</th>
+            <th>Localidad</th>
             <th>Correo electrónico</th>
+            <th></th>
         </tr>
         <tr *ngFor="let cliente of clientes">
             <td>{{cliente.nombre}}</td>
             <td>{{cliente.cif}}</td>
-            <td>{{cliente.domicilio}}</td>
+            <td>{{cliente.localidad}}</td>
             <td>{{cliente.email}}</td>
+            <td>
+                <button class="icon" routerLink="/editar-cliente/{{cliente._id}}">
+                    <img src="assets/icons/edit.svg" alt=""> Editar
+                </button>
+            </td>
         </tr>
     </table>
 </div>

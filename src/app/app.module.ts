@@ -11,6 +11,7 @@ import { ListadoClientesComponent } from './clientes/listado-clientes/listado-cl
 import { CrearClienteComponent } from './clientes/crear-cliente/crear-cliente.component';
 import { ListadoFacturasComponent } from './facturas/listado-facturas/listado-facturas.component';
 import { CrearFacturaComponent } from './facturas/crear-factura/crear-factura.component';
+import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CrearFacturaComponent } from './facturas/crear-factura/crear-factura.co
     ListadoClientesComponent,
     CrearClienteComponent,
     ListadoFacturasComponent,
-    CrearFacturaComponent
+    CrearFacturaComponent,
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,

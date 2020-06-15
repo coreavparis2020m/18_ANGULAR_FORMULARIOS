@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from 'src/app/servicios/clientes.service';
 import { Router } from '@angular/router';
 import { ValidateCif } from 'src/app/validadores/cif.validator';
+import { Cliente } from 'src/app/modelos/cliente.model';
 
 @Component({
   selector: 'app-crear-cliente',
@@ -15,8 +16,11 @@ export class CrearClienteComponent implements OnInit {
     formCliente: FormGroup;
     @ViewChild('nombre', {static: true}) nombreRef: ElementRef;
     showValidacion = false;
-
-    userId = '05687575';
+    provincias = ['Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz','Barcelona','Burgos','Cáceres',
+                    'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
+                    'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
+                    'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
+                    'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza'];
 
     constructor(private clientesService: ClientesService,
                 private router: Router) { }
@@ -25,7 +29,9 @@ export class CrearClienteComponent implements OnInit {
         this.formCliente = new FormGroup({
             nombre: new FormControl('',[Validators.required]),
             cif: new FormControl('', ValidateCif),
-            domicilio: new FormControl('', [Validators.required, Validators.minLength(5)]),
+            calle: new FormControl('', [Validators.required, Validators.minLength(5)]),
+            localidad: new FormControl(''),
+            provincia: new FormControl(''),
             email: new FormControl(''),
             pago: new FormControl(''),
         });
@@ -33,17 +39,22 @@ export class CrearClienteComponent implements OnInit {
     }
 
     sendCliente() {
-        let cliente = {
+        let cliente: Cliente = {
             nombre: this.formCliente.get('nombre').value,
             cif: this.formCliente.get('cif').value,
-            domicilio: this.formCliente.get('domicilio').value,
+            calle: this.formCliente.get('calle').value,
+            localidad: this.formCliente.get('localidad').value,
+            provincia: this.formCliente.get('provincia').value,
             email: this.formCliente.get('email').value,
             pago: this.formCliente.get('pago').value,
-            userId: this.userId,
-            creadoEl: new Date()
         }
-        this.clientesService.postCliente(cliente);
-        this.router.navigate(['/listado-clientes']);
+        this.clientesService.postCliente(cliente)
+                                .subscribe((res: any) => {
+                                    console.log(res);
+                                    this.router.navigate(['/listado-clientes']);
+                                },(error: any) => {
+                                    console.log(error);
+                                })
     }
 
     changeShowValidacion() {
