@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
 
-    clientes: any = [];
+    urlCliente = 'http://localhost:3000/cliente';
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     postCliente(cliente) {
-        this.clientes.push(cliente);
-        console.log(this.clientes);
+
     }
 
     getClientes() {
-        return this.clientes;
+        return this.http.get(this.urlCliente)
+                    .pipe(
+                        map((res: any) => {
+                            return res
+                        })
+                    )
     }
 
 }
