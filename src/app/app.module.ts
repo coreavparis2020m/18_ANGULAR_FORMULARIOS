@@ -12,6 +12,7 @@ import { CrearClienteComponent } from './clientes/crear-cliente/crear-cliente.co
 import { ListadoFacturasComponent } from './facturas/listado-facturas/listado-facturas.component';
 import { CrearFacturaComponent } from './facturas/crear-factura/crear-factura.component';
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente
     CrearClienteComponent,
     ListadoFacturasComponent,
     CrearFacturaComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

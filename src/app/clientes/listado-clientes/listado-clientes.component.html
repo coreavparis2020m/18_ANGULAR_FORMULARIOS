@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container-head">
         <h1>Listado de Clientes</h1>
-        <button class="icon" routerLink="/crear-cliente">
+        <button class="icon-text" routerLink="/crear-cliente">
             <img src="assets/icons/user-plus.svg" alt="">
             Añadir
         </button>
@@ -20,10 +20,16 @@
             <td>{{cliente.localidad}}</td>
             <td>{{cliente.email}}</td>
             <td>
-                <button class="icon" routerLink="/editar-cliente/{{cliente._id}}">
-                    <img src="assets/icons/edit.svg" alt=""> Editar
+                <button class="icon warning" routerLink="/editar-cliente/{{cliente._id}}">
+                    <img src="assets/icons/edit.svg" alt="">
+                </button>
+                <button class="icon danger" (click)="showModal(cliente._id)">
+                    <img src="assets/icons/trash.svg" alt="">
                 </button>
             </td>
         </tr>
     </table>
 </div>
+<app-modal *ngIf="modal"
+           [texto]="'¿Está seguro de eliminar el cliente?'"
+           (accion)="getAccion($event)"></app-modal>
