@@ -9,6 +9,7 @@ import { Cliente } from 'src/app/modelos/cliente.model';
 })
 export class ListadoClientesComponent implements OnInit {
 
+    loading = true;
     clientes: Array<Cliente>;
     modal = false;
     _id: string;
@@ -23,12 +24,14 @@ export class ListadoClientesComponent implements OnInit {
         this.clientesService.getClientes()
                                 .subscribe((res: any) => {
                                     this.clientes = res.clientes;
+                                    this.loading = false;
                                 }, (error: any) => {
                                     console.log(error);
                                 })
     }
 
     removeCliente(_id) {
+        this.loading = true;
         this.clientesService.deleteCliente(_id)
                                 .subscribe((res: any) => {
                                     this.loadClientes();

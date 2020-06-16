@@ -12,7 +12,7 @@ import { Cliente } from 'src/app/modelos/cliente.model';
 })
 export class CrearClienteComponent implements OnInit {
 
-  
+    loading = false;
     formCliente: FormGroup;
     @ViewChild('nombre', {static: true}) nombreRef: ElementRef;
     showValidacion = false;
@@ -39,6 +39,7 @@ export class CrearClienteComponent implements OnInit {
     }
 
     sendCliente() {
+        this.loading = true;
         let cliente: Cliente = {
             nombre: this.formCliente.get('nombre').value,
             cif: this.formCliente.get('cif').value,
@@ -53,6 +54,7 @@ export class CrearClienteComponent implements OnInit {
                                     console.log(res);
                                     this.router.navigate(['/listado-clientes']);
                                 },(error: any) => {
+                                    this.loading = false;
                                     console.log(error);
                                 })
     }

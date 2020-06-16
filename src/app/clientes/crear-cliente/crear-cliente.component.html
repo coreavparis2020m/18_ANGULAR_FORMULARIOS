@@ -66,7 +66,10 @@
         <div>
             <button type="button" class="outline" routerLink="/listado-clientes">Cancelar</button>
             <button type="button" class="m-l-small" *ngIf="formCliente.invalid" (click)="changeShowValidacion()">Añadir cliente</button>
-            <button type="submit" class="m-l-small" *ngIf="formCliente.valid">Añadir cliente</button>
+            <button type="submit" class="m-l-small" *ngIf="formCliente.valid">
+                <span *ngIf="loading">Espere...</span>
+                <span *ngIf="!loading">Añadir cliente</span>
+            </button>
         </div>
     </form>
 </div>

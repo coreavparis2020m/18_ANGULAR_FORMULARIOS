@@ -6,7 +6,8 @@
             Añadir
         </button>
     </div>
-    <table>
+    <app-spinner *ngIf="loading"></app-spinner>
+    <table *ngIf="!loading">
         <tr>
             <th>Nombre</th>
             <th>C.I.F.</th>
