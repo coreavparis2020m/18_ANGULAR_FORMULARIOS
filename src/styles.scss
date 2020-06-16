@@ -179,6 +179,10 @@ form {
 
         }
 
+        input[readonly] {
+            background-color: rgb(236, 236, 236);
+        }
+
     }
 
     div:last-child {

@@ -38,4 +38,13 @@ export class ClientesService {
                     )
     }
 
+    putCliente(_id, cambiosCliente) {
+        return this.http.put(this.urlCliente + '/' + _id, cambiosCliente)
+                    .pipe(
+                        map((res: any) => {
+                            return res
+                        })
+                    )
+    }
+
 }

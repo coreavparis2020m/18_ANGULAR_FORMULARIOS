@@ -1,1 +1,65 @@
-<p>editar-cliente works!</p>
+<div class="container">
+    <div class="container-head">
+        <h1>Editar Cliente</h1>
+        <button class="icon" routerLink="/listado-clientes">
+            Atrás
+        </button>
+    </div>
+    <form [formGroup]="formCliente" (ngSubmit)="sendCliente()">
+        <div>
+            <label for="nombre">
+                Nombre
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.nombre.valid">
+                    <img src="assets/icons/check-circle.svg" alt="">
+                </span>
+                <span class="invalid" *ngIf="showValidacion && formCliente.controls.nombre.invalid">
+                    <img src="assets/icons/x-circle.svg" alt="">
+                    El nombre es obligatorio
+                </span>
+            </label>
+            <input type="text" id="nombre" formControlName="nombre">
+        </div>
+        <div>
+            <label for="cif">
+                C.I.F.
+            </label>
+            <input type="text" id="cif" formControlName="cif" readonly>
+        </div>
+        <div>
+            <label for="calle">
+                Calle
+                <span class="valid" *ngIf="showValidacion && formCliente.controls.calle.valid">
+                    <img src="assets/icons/check-circle.svg" alt="">
+                </span>
+                <span class="invalid" *ngIf="showValidacion && formCliente.controls.calle.invalid">
+                    <img src="assets/icons/x-circle.svg" alt="">
+                    La calle debe tener más de 5 caracteres
+                </span>
+            </label>
+            <input type="text" id="calle" formControlName="calle">
+        </div>
+        <div>
+            <label for="localidad">Localidad</label>
+            <input type="localidad" id="localidad" formControlName="localidad">
+        </div>
+        <div>
+            <label for="provincia">Provincia</label>
+            <select id="provincia" formControlName="provincia">
+                <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <div>
+            <label for="pago">Forma de pago</label>
+            <input type="text" id="pago" formControlName="pago">
+        </div>
+        <div>
+            <button type="button" class="outline" routerLink="/listado-clientes">Cancelar</button>
+            <button type="button" class="m-l-small" *ngIf="formCliente.invalid" (click)="changeShowValidacion()">Modificar cliente</button>
+            <button type="submit" class="m-l-small" *ngIf="formCliente.valid">Modificar cliente</button>
+        </div>
+    </form>
+</div>
