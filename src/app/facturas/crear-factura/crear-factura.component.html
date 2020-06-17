@@ -8,7 +8,16 @@
     <form [formGroup]="formFra">
         <div>
             <label for="cliente">Nombre Cliente</label>
-            <input type="search" id="cliente" formControlName="cliente">
+            <input type="search" id="cliente" formControlName="cliente" autocomplete="off">
+            <div class="resultados">
+                <div class="item" *ngFor="let cliente of clientes">
+                    <span>{{cliente.nombre}}</span>
+                    <span>{{cliente.localidad}}</span>
+                </div>
+                <div class="item" *ngIf="clientes.length === 0 && formFra.get('cliente').value !== ''">
+                    <span>No se encontraron coincidencias</span>
+                </div>
+            </div>
         </div>
         <div>
             <label for="cif">C.I.F. Cliente</label>

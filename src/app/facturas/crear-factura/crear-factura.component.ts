@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NumerosService } from 'src/app/servicios/numeros.service';
 import { ClientesService } from 'src/app/servicios/clientes.service';
+import { Cliente } from 'src/app/modelos/cliente.model';
 
 @Component({
   selector: 'app-crear-factura',
@@ -12,6 +13,7 @@ export class CrearFacturaComponent implements OnInit {
 
     formFra: FormGroup;
     fechaActual = new Date();
+    clientes: Array<Cliente> = [];
 
     constructor(private numerosService: NumerosService,
                 private clientesService: ClientesService) { }
@@ -34,12 +36,17 @@ export class CrearFacturaComponent implements OnInit {
     onSearch() {
         this.formFra.get('cliente').valueChanges
                                         .subscribe(data => {
-                                            this.clientesService.searchCliente(data)
+                                            if(data !== '') {
+                                                this.clientesService.searchCliente(data)
                                                                     .subscribe((res:any) => {
-                                                                        console.log(res);
+                                                                        this.clientes = res.clientes;
                                                                     }, (error: any) => {
                                                                         console.log(error);
                                                                     })
+                                            } else {
+                                                this.clientes = [];
+                                            }
+
                                         })
     }
 
