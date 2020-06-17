@@ -57,7 +57,11 @@ export class CrearClienteComponent implements OnInit {
                                     this.router.navigate(['/listado-clientes']);
                                 },(error: any) => {
                                     this.loading = false;
-                                    console.log(error);
+                                    if (error.error.error.code === 11000) {
+                                        this.mensajesService.setMensaje('CIF Duplicado', 'warning');
+                                    } else {
+                                        this.mensajesService.setMensaje('Error de conexión, inténtelo de nuevo más tarde', 'warning');
+                                    }
                                 })
     }
 

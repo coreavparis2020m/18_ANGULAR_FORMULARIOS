@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/servicios/clientes.service';
 import { Cliente } from 'src/app/modelos/cliente.model';
+import { MensajesService } from 'src/app/servicios/mensajes.service';
 
 @Component({
   selector: 'app-listado-clientes',
@@ -14,7 +15,8 @@ export class ListadoClientesComponent implements OnInit {
     modal = false;
     _id: string;
   
-    constructor(private clientesService: ClientesService) { }
+    constructor(private clientesService: ClientesService,
+                private mensajesService: MensajesService) { }
 
     ngOnInit() {
         this.loadClientes()
@@ -35,9 +37,9 @@ export class ListadoClientesComponent implements OnInit {
         this.clientesService.deleteCliente(_id)
                                 .subscribe((res: any) => {
                                     this.loadClientes();
-                                    console.log(res);
+                                    this.mensajesService.setMensaje('El cliente ha sido borrado', 'success');
                                 }, (error: any) => {
-                                    console.log(error);
+                                    this.mensajesService.setMensaje('Error de conexión, inténtelo de nuevo más tarde', 'warning');
                                 })
     }
 

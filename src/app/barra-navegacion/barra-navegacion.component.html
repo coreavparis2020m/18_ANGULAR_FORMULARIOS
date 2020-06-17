@@ -1,5 +1,9 @@
 <nav>
-    <div></div>
+    <div class="burger" (click)="toggleMenu()" #burger>
+        <div class="barra superior"></div>
+        <div class="barra media"></div>
+        <div class="barra inferior"></div>
+    </div>
     <div class="mensaje"
         *ngIf="showMensaje"
         [ngClass]="{
@@ -11,3 +15,16 @@
     </div>
     <div>appPresupuestos</div>
 </nav>
+<div class="menu" #menu>
+    <div class="item" routerLink="/" (click)="toggleMenu()">
+        Inicio
+    </div>
+    <hr>
+    <div class="item" routerLink="/listado-clientes" (click)="toggleMenu()">
+        Clientes
+    </div>
+    <hr>
+    <div class="item" routerLink="/listado-facturas" (click)="toggleMenu()">
+        Facturas
+    </div>
+</div>
