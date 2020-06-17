@@ -38,6 +38,15 @@ export class ClientesService {
                     )
     }
 
+    searchCliente(termino) {
+        return this.http.get(this.urlCliente + '/search/' + termino)
+                    .pipe(
+                        map((res: any) => {
+                            return res
+                        })
+                    )
+    }
+
     putCliente(_id, cambiosCliente) {
         return this.http.put(this.urlCliente + '/' + _id, cambiosCliente)
                     .pipe(
