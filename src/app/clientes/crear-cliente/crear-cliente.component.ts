@@ -4,6 +4,7 @@ import { ClientesService } from 'src/app/servicios/clientes.service';
 import { Router } from '@angular/router';
 import { ValidateCif } from 'src/app/validadores/cif.validator';
 import { Cliente } from 'src/app/modelos/cliente.model';
+import { MensajesService } from 'src/app/servicios/mensajes.service';
 
 @Component({
   selector: 'app-crear-cliente',
@@ -23,6 +24,7 @@ export class CrearClienteComponent implements OnInit {
                     'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza'];
 
     constructor(private clientesService: ClientesService,
+                private mensajesService: MensajesService,
                 private router: Router) { }
 
     ngOnInit() {
@@ -51,7 +53,7 @@ export class CrearClienteComponent implements OnInit {
         }
         this.clientesService.postCliente(cliente)
                                 .subscribe((res: any) => {
-                                    console.log(res);
+                                    this.mensajesService.setMensaje('El cliente fue creado con éxito', 'success');
                                     this.router.navigate(['/listado-clientes']);
                                 },(error: any) => {
                                     this.loading = false;

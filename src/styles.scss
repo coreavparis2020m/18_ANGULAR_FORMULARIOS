@@ -100,12 +100,31 @@ nav {
     width: 100%;
     padding: 1rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 
-    p {
-        margin-left: 1rem;
-        cursor: pointer;
+    .mensaje {
+        font-size: 1.2rem;
+
+        &.success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 0.5rem 1rem;
+        }
+
+        &.warning {
+            border: 1px solid #ffeeba;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 0.5rem 1rem;
+        }
+        &.danger {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 0.5rem 1rem;
+        }
     }
 }
 
