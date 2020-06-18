@@ -14,6 +14,7 @@ import { CrearFacturaComponent } from './facturas/crear-factura/crear-factura.co
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 import { ModalComponent } from './modal/modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CrearFacturaComponent,
     EditarClienteComponent,
     ModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
