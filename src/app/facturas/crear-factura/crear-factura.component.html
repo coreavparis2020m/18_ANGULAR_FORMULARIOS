@@ -1,27 +1,25 @@
 <div class="container">
     <div class="container-head">
-        <h1>Nuevo Factura</h1>
+        <h1>Nueva Factura</h1>
         <button class="icon" routerLink="/listado-facturas">
             Atrás
         </button>
     </div>
-    <form [formGroup]="formFra">
+    <form [formGroup]="formFra" (ngSubmit)="sendFactura()">
         <div>
             <label for="cliente">Nombre Cliente</label>
             <input type="search" id="cliente" formControlName="cliente" autocomplete="off">
             <div class="resultados">
-                <div class="item" *ngFor="let cliente of clientes">
+                <div class="item" *ngFor="let cliente of clientes; let i = index" (click)="setCliente(i)">
                     <span>{{cliente.nombre}}</span>
                     <span>{{cliente.localidad}}</span>
-                </div>
-                <div class="item" *ngIf="clientes.length === 0 && formFra.get('cliente').value !== ''">
-                    <span>No se encontraron coincidencias</span>
+                    <!-- <span *ngIf="clientes.length === 0">No se encontraron coincidencias</span> -->
                 </div>
             </div>
         </div>
         <div>
             <label for="cif">C.I.F. Cliente</label>
-            <input type="text" id="cif" formControlName="cif">
+            <input type="text" id="cif" formControlName="cif" readonly>
         </div>
         <div>
             <label for="fecha">Fecha Factura</label>
@@ -46,12 +44,15 @@
         </div>
         <div>
             <label for="importeIVA">Importe IVA</label>
-            <input type="text" id="importeIVA" formControlName="importeIVA">
+            <input type="text" id="importeIVA" formControlName="importeIVA" readonly>
         </div>
         <div>
             <label for="total">Total Factura IVA incluido</label>
-            <input type="text" id="total" formControlName="total">
+            <input type="text" id="total" formControlName="total" readonly>
         </div>
-        <div></div>
+        <div>
+            <button class="outline" type="button" routerLink="/listado-facturas">Cancelar</button>
+            <button class="m-l-small" type="submit">Añadir factura</button>
+        </div>
     </form>
 </div>
