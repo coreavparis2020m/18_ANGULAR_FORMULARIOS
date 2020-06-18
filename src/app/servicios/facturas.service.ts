@@ -21,6 +21,11 @@ export class FacturasService {
     }
 
     getFacturas() {
-        
+        return this.http.get(this.urlFactura)
+                            .pipe(
+                                map((res: any) => {
+                                    return res
+                                })
+                            )  
     }
 }

@@ -16,6 +16,7 @@ export class CrearFacturaComponent implements OnInit {
     fechaActual = new Date();
     clientes: Array<Cliente> = [];
     clienteSeleccionado: Cliente;
+    showNoCoincidencias = false;
 
     constructor(private numerosService: NumerosService,
                 private clientesService: ClientesService,
@@ -25,7 +26,7 @@ export class CrearFacturaComponent implements OnInit {
         this.formFra = new FormGroup({
             cliente: new FormControl(''),
             cif: new FormControl(''),
-            fecha: new FormControl(null),
+            fecha: new FormControl(this.fechaActual),
             concepto: new FormControl(''),
             base: new FormControl(null),
             tipo: new FormControl(0.21),
@@ -42,11 +43,17 @@ export class CrearFacturaComponent implements OnInit {
                                             if(data !== '') {
                                                 this.clientesService.searchCliente(data)
                                                                     .subscribe((res:any) => {
+                                                                        if(res.clientes.length === 0) {
+                                                                            this.showNoCoincidencias = true;
+                                                                        } else {
+                                                                            this.showNoCoincidencias = false;
+                                                                        }
                                                                         this.clientes = res.clientes;
                                                                     }, (error: any) => {
                                                                         console.log(error);
                                                                     })
                                             } else {
+                                                this.showNoCoincidencias = false;
                                                 this.clientes = [];
                                             }
 

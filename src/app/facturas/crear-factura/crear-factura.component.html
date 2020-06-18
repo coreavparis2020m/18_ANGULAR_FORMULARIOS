@@ -13,7 +13,9 @@
                 <div class="item" *ngFor="let cliente of clientes; let i = index" (click)="setCliente(i)">
                     <span>{{cliente.nombre}}</span>
                     <span>{{cliente.localidad}}</span>
-                    <!-- <span *ngIf="clientes.length === 0">No se encontraron coincidencias</span> -->
+                </div>
+                <div class="item" *ngIf="showNoCoincidencias">
+                    No se encontraron coincidencias
                 </div>
             </div>
         </div>

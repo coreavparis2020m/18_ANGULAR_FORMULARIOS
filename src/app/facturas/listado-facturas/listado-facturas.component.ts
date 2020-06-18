@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FacturasService } from 'src/app/servicios/facturas.service';
 
 @Component({
   selector: 'app-listado-facturas',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoFacturasComponent implements OnInit {
 
-  constructor() { }
+    facturas: any;
 
-  ngOnInit() {
-  }
+    constructor(private facturasService: FacturasService) { }
+
+    ngOnInit() {
+        this.loadFacturas();
+    }
+
+    loadFacturas() {
+        this.facturasService.getFacturas()
+                                .subscribe((res: any) => {
+                                    this.facturas = res.facturas;
+                                }, (error: any) => {
+                                    console.log(error);
+                                })
+    }
 
 }

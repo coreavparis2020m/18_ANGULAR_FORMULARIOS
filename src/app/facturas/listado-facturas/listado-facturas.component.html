@@ -1,10 +1,23 @@
 <div class="container">
     <div class="container-head">
         <h1>Listado de Facturas</h1>
-        <button class="icon" routerLink="/crear-factura">
+        <button class="icon-text" routerLink="/crear-factura">
             <img src="assets/icons/file-plus.svg" alt="">
             Añadir
         </button>
     </div>
-    <!-- tabla -->
+    <table>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Concepto</th>
+            <th>Base Imponible</th>
+        </tr>
+        <tr *ngFor="let factura of facturas">
+            <td>{{factura.cliente.nombre}}</td>
+            <td>{{factura.fecha | date: 'dd/MM/yy'}}</td>
+            <td>{{factura.concepto}}</td>
+            <td>{{factura.base}}</td>
+        </tr>
+    </table>
 </div>
