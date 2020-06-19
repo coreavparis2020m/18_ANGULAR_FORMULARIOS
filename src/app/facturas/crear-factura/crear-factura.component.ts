@@ -80,7 +80,7 @@ export class CrearFacturaComponent implements OnInit {
     sendFactura() {
         let factura = {
             cliente: this.clienteSeleccionado,
-            fecha: this.formFra.get('fecha').value,
+            fecha:  new Date(this.formFra.get('fecha').value),
             concepto: this.formFra.get('concepto').value,
             base: this.formFra.get('base').value,
             tipo: this.formFra.get('tipo').value

@@ -17,6 +17,10 @@ export class EstadisticasComponent implements OnInit {
     primerDiaPenultimoMes: any;
     ultimoDiaPenultimoMes: any;
 
+    frasMesCurso: number;
+    frasUltimoMes: number;
+    frasPenultimoMes: number;
+
 
     constructor(private facturasService: FacturasService) { }
 
@@ -29,17 +33,20 @@ export class EstadisticasComponent implements OnInit {
         this.facturasService.getFacturas()
                                 .subscribe((res: any) => {
                                     this.facturas = res.facturas;
-                                    console.log(this.facturas);
+                                    this.frasMesCurso = this.setSumaFacturas(this.primerDiaMesCurso, this.ultimoDiaMesCurso);
+                                    this.frasUltimoMes = this.setSumaFacturas(this.primerDiaUltimoMes, this.ultimoDiaUltimoMes);
+                                    this.frasPenultimoMes = this.setSumaFacturas(this.primerDiaPenultimoMes, this.ultimoDiaPenultimoMes);
+                                    
                                 }, (error: any) => {
                                     console.log(error);
                                 })
     }
 
     setFechas() {
-        let mesCurso = new Date(2020, 1, 18).getMonth();
+        let mesCurso = new Date().getMonth();
         let ultimoMes = mesCurso - 1;
         let penultimoMes = mesCurso - 2;
-        let anyoMesCurso = new Date(2020, 1, 18).getFullYear();
+        let anyoMesCurso = new Date().getFullYear();
         let anyoUltimoMes = anyoMesCurso;
         let anyoPenultimoMes = anyoMesCurso;
         if(mesCurso === 1) {
@@ -51,9 +58,12 @@ export class EstadisticasComponent implements OnInit {
             anyoUltimoMes -= 1;
             anyoPenultimoMes -= 1;
         }
-        //this.primerDiaMesCurso 
-        //this.ultimoDiaMesCurso
-        this.getDias(5, 2020);
+        this.primerDiaMesCurso = this.getDias(mesCurso, anyoMesCurso)[0];
+        this.ultimoDiaMesCurso = this.getDias(mesCurso, anyoMesCurso)[1];
+        this.primerDiaUltimoMes = this.getDias(ultimoMes, anyoUltimoMes)[0];
+        this.ultimoDiaUltimoMes = this.getDias(ultimoMes, anyoUltimoMes)[1];
+        this.primerDiaPenultimoMes = this.getDias(penultimoMes, anyoPenultimoMes)[0];
+        this.ultimoDiaPenultimoMes = this.getDias(penultimoMes, anyoPenultimoMes)[1];
     }
 
     getDias(mes, anyo) {
@@ -63,7 +73,18 @@ export class EstadisticasComponent implements OnInit {
             dias.push(new Date(dia));
             dia.setDate(dia.getDate() + 1);
         }
-        console.log(dias);
+        return [dias[0], dias[dias.length - 1]];
+    }
+
+    setSumaFacturas(primerDia, ultimoDia) {
+        let sumaFacturas = 0;
+        this.facturas.forEach(elem => {
+            if(new Date(elem.fecha).getTime() >= primerDia.getTime() &&
+               new Date(elem.fecha).getTime() < (ultimoDia.getTime() + 24 * 60 * 60 * 1000)) {
+                   sumaFacturas += elem.base;
+            }
+        })
+        return sumaFacturas;
     }
 
 }
